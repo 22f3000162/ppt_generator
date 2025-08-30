@@ -304,24 +304,7 @@ def process_markdown_formatting(paragraph, text):
 def index():
     return render_template('index.html')
 
-
-@app.route('/favicon.ico')
-@app.route('/favicon.png')
-def favicon():
-    from flask import Response
-    # 1x1 transparent PNG
-    png = (b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06'
-           b'\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\x0bIDATx\x9cc``\x00\x00\x00\x02\x00\x01'
-           b'\xe2!\xbc3\x00\x00\x00\x00IEND\xaeB`\x82')
-    return Response(png, mimetype='image/png')
-
-
-
 @app.route('/generate', methods=['POST'])
-from pptx import Presentation
-from pptx.util import Pt
-from pptx.enum.shapes import PP_PLACEHOLDER
-
 def generate():
     if 'ppt_file' not in request.files:
         return "No file part", 400
